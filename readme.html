@@ -1,0 +1,54 @@
+<html>
+<body>
+<p>Overview of code for the paper 'long- and short term history effects in a spiking network model of statistical learning'.</p>
+<p>All code is written in MATLAB. If something is unclear, please feel free to contact me at <a href="mailto:amadeus.maes@gmail.com">amadeus.maes@gmail.com</a>.</p>
+<br>
+Simulations can be started by running the file:<br>
+<code>setup_network_simulation.m</code><br>
+<br>
+The networks are constructed in files:<br>
+<code>createUniform.m</code> (the uniform sampler network)<br>
+<code>createReadOutRNN.m</code> (the sensory network)<br>
+<br>
+You can choose the parameters of the dynamics, input and plasticity in the files:<br>
+<code>dynamics_parameters.m</code><br>
+<code>external_input.p</code><br>
+<code>plasticity_parameters.m</code><br>
+<br>
+Set the boolean to choose whether you want to run spontaneous dynamics, or to add plasticity and learning:<br>
+<code>spontaneous_simulation.m</code><br>
+<code>training_simulation.m</code> (<code>compute_error.m</code> tracks error during learning, plastic weights are saved in data folder)<br>
+<br>
+This file samples from the target distribution to give input to the sensory network (used in <code>training_simulation.m</code>):<br>
+<code>sample_target.m</code><br>
+<br>
+This file sets the initial connectivity between uniform sampler network and sensory network:<br>
+<code>test_setup.m</code><br>
+<br>
+Code to plot spike rasters of the networks are found in:<br>
+<code>plotUNIFORMRASTER.m</code><br>
+<code>plotReadOutRASTER.m</code><br>
+<br>
+All previous files listed form the 'basics', and are involved with running and training the model.<br>
+The following files can be used to analyze the model and make figures.<br>
+<br>
+Run this file to simulate psychometric curves for a certain set time, set distribution in the file <code>test_setup_exp.m</code>:<br>
+<code>compute_expectation.m</code>: <br>
+<br>
+Run this file to compute the mean slope and standard deviation of the curve as a function of simulation time:<br>
+<code>compute_std_simtimes.m</code><br>
+<br>
+The following three files can only be ran when you have the data:<br>
+<code>compute_slope.m</code> (figure 5.A)<br>
+<code>compute_short_term_effect.m</code> (figure 5.D)<br>
+<code>compute_weight_corrs.m</code> (suppl fig 3.A)<br>
+you can get the data by training the model, initializing the distribution as unimodal or bimodal in <code>test_setup.m</code>. 
+Once you have trained the model, and recorded the plastic weights, you can then compute the slope of the psychometric curve with learning, 
+or the short-term effect or the weight correlations. This data is not included because it is a few 100MB large.<br>
+<br>
+Two data files included:<br>
+<code>target_distr2.mat</code>: hardcoded target distribution (see figure 2.B)<br>
+<code>wRE10_50_100_small_v3_100.mat</code>: example plastic weights after 500 samples given to sensory network <br>
+(this will be different every time you run the model, this one is used for suppl fig 1)<br>
+</body>
+</html>
